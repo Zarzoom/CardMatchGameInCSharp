@@ -1,6 +1,8 @@
-﻿namespace CardFlipGame.Shared;
+﻿using Microsoft.AspNetCore.Components;
 
-public class NavMenu_razor
+namespace CardFlipGame.Shared;
+
+public class NavMenu_razor: ComponentBase
 {
     protected bool collapseNavMenu = true;
 

@@ -1,12 +1,25 @@
-﻿@inherits Card_razor
-<Card>
-    <CardBody>
-        @if(face == true)
-        {
-            <img src = "../Images/PlayingCard.png"/>
-        }
-    </CardBody>
-</Card>
+﻿@using Radzen
+@inherits Card_razor
+   <div onclick="@flipCard" >
+   <RadzenCard Class="cardPadding" Style="max-width: 210px; max-height: 420px; min-width: 210px; min-height: 320px;" Variant="Variant.Filled">
+ 
+       @if (face && !disabled)
+       {
+           <RadzenImage Style="max-width: 200px; max-height: 410px" Path="Images/PlayingCard.png"/>
+       }
+       else if (!face && !disabled)
+       {
+           <p>@CardNumber</p>
+       }
+       else
+       {
+           <p>@CardNumber</p>
+           <p>solved</p>
+       }
+ 
+   </RadzenCard>
+      </div>
+
 
 @code {
     

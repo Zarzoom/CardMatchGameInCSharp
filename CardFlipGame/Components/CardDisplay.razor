@@ -1,7 +1,10 @@
-﻿
-<SingleCard CardNumber="2"></SingleCard>
+﻿@inherits CardDisplay_razor
 
 
-@code {
-    
-}
+<RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.Center" AlignItems="AlignItems.Start" Wrap="FlexWrap.Wrap">
+    @foreach (int num in CardGen.randomCardNumbers)
+    {
+        <SingleCard CardNumber="@num"></SingleCard>
+    }
+</RadzenStack>
+
