@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Components;
-
+﻿using CardFlipGame.DataType;
+using Microsoft.AspNetCore.Components;
+using System;
+using System.Collections.Generic;
 namespace CardFlipGame.Logic;
 
 public class FlipLogic
@@ -8,48 +10,47 @@ public class FlipLogic
     private void NotifyStateChanged() => OnChange?.Invoke();
     [Parameter] public bool disabled { get; set; }
     protected int numFlipped = 0;
-    private List<int> Compare = new List<int>();
-    public bool flipCard(bool face, int value )
+    private List<Card> flippedCards = new List<Card>();
+    public bool flipCard(Card cardForFlip)
     {
     Console.WriteLine(numFlipped);
 
-        if (face && numFlipped < 1)
+        if (!cardForFlip.state && flippedCards.Count < 1)
         {
-            Compare.Add(value);
-            face = false;
-            numFlipped++;
-            return face;
+            flippedCards.Add(cardForFlip);
+            cardForFlip.state = true;
+            return cardForFlip.state;
         }
 
-        if (face && numFlipped == 1)
+        if (!cardForFlip.state && flippedCards.Count == 1)
         {
-            Compare.Add(value);
-            if (Compare[0] == Compare[1])
+            flippedCards.Add(cardForFlip);
+            if (flippedCards[0].value == flippedCards[1].value)
             {
+                flippedCards[0].enabled = false;
+                flippedCards[1].enabled = false;
                 NotifyStateChanged();
-                Compare.Clear();
-                numFlipped = 0;
-                return face;
+                flippedCards.Clear();
+                
+                return cardForFlip.state;
             }
             else
             {
               
-                face = false;
-                numFlipped++;
-                return face;
+                cardForFlip.state = true;
+                return cardForFlip.state;
             }
         }
-        else if (face && numFlipped >= 2)
+        else if (!cardForFlip.state && flippedCards.Count >= 2)
         {
-                face = true;
-                return face;
+                cardForFlip.state = false;
+                return cardForFlip.state;
         }
         else
         {
-            Compare.RemoveAt(Compare.IndexOf(value));
-            face = true;
-            numFlipped--;
-            return face;
+            flippedCards.Remove(cardForFlip);
+            cardForFlip.state = false;
+            return cardForFlip.state;
         }
        
     }

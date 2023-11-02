@@ -2,13 +2,13 @@
 using System.Runtime.InteropServices.JavaScript;
 using CardFlipGame.Logic;
 using Microsoft.AspNetCore.Components;
+using CardFlipGame.DataType;
 namespace CardFlipGame.Components;
 
 public class CardDisplay_razor: ComponentBase
 {
     
     [Inject] public CardGeneration CardGen { get; set; }
-    protected List<int> numbers = new();
     protected override void OnInitialized()
     {
         CardGen.OnChange += OnChangeHandler;

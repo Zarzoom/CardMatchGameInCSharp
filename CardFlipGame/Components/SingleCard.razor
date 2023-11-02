@@ -3,17 +3,17 @@
    <div onclick="@flipCard" >
    <RadzenCard Class="cardPadding" Style="max-width: 210px; max-height: 420px; min-width: 210px; min-height: 320px;" Variant="Variant.Filled">
  
-       @if (face && !disabled)
+       @if (!CardState && !disabled)
        {
            <RadzenImage Style="max-width: 200px; max-height: 410px" Path="Images/PlayingCard.png"/>
        }
-       else if (!face && !disabled)
+       else if (CardState && !disabled)
        {
-           <p>@CardNumber</p>
+           <p>@CardValue.value</p>
        }
        else
        {
-           <p>@CardNumber</p>
+           <p>@CardValue.value</p>
            <p>solved</p>
        }
  

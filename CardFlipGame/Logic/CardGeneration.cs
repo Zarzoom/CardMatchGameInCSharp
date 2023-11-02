@@ -1,5 +1,6 @@
 ﻿using System.Security.Cryptography;
 using Microsoft.AspNetCore.Components;
+using CardFlipGame.DataType;
 
 namespace CardFlipGame.Logic;
 
@@ -7,11 +8,11 @@ public class CardGeneration
 {
     public CardGeneration()
     {
-    randomCardNumbers = new List<int>();
+    randomCardNumbers = new List<Card>();
     NumberGenorator(8);
 }
 
-    public List<int> randomCardNumbers { get; set; }
+    public List<Card> randomCardNumbers { get; set; }
     public event Action OnChange;
     private void NotifyStateChanged() => OnChange?.Invoke();
     public void NumberGenorator(int numOfCards)
@@ -31,7 +32,12 @@ public class CardGeneration
             while (cardNumbers.Count() >= 1)
             {
                 int index = randomNum.Next(0, cardNumbers.Count());
-                randomCardNumbers.Add(cardNumbers.ElementAt(index));
+                Card newCard = new Card();
+                newCard.value = cardNumbers.ElementAt(index);
+                newCard.ID = index;
+                newCard.state = false;
+                newCard.enabled = true;
+                randomCardNumbers.Add(newCard);
                 cardNumbers.RemoveAt(index);
             }
 

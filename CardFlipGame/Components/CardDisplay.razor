@@ -1,10 +1,11 @@
-﻿@inherits CardDisplay_razor
+﻿@using CardFlipGame.DataType
+@inherits CardDisplay_razor
 
 
 <RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.Center" AlignItems="AlignItems.Start" Wrap="FlexWrap.Wrap">
-    @foreach (int num in CardGen.randomCardNumbers)
+    @foreach (Card card in CardGen.randomCardNumbers)
     {
-        <SingleCard CardNumber="@num"></SingleCard>
+        <SingleCard CardValue="@card"></SingleCard>
     }
 </RadzenStack>
 
