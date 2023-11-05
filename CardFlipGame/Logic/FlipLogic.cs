@@ -31,7 +31,6 @@ public class FlipLogic
                 flippedCards[1].enabled = false;
                 NotifyStateChanged();
                 flippedCards.Clear();
-                
                 return cardForFlip.state;
             }
             else

@@ -13,6 +13,10 @@ public class Card_razor: ComponentBase
     [Parameter] public Card CardValue { get; set; }
     public void flipCard()
     {
+        if (!CardValue.enabled)
+        {
+            return;
+        }
         flipLogic.OnChange += OnChangeHandler;
         var tempFace = CardState;
         CardState = !CardState;
@@ -22,7 +26,7 @@ public class Card_razor: ComponentBase
     
     private async void OnChangeHandler()
     {
-        if (!card.enabled)
+        if (!CardValue.enabled)
         {
             disabled = true;
         }
