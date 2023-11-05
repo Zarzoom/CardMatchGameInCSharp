@@ -3,11 +3,11 @@
    <div onclick="@flipCard" >
    <RadzenCard Class="cardPadding" Style="max-width: 210px; max-height: 420px; min-width: 210px; min-height: 320px;" Variant="Variant.Filled">
  
-       @if (!CardState && !disabled)
+       @if (!CardValue.state && CardValue.enabled)
        {
            <RadzenImage Style="max-width: 200px; max-height: 410px" Path="Images/PlayingCard.png"/>
        }
-       else if (CardState && !disabled)
+       else if (CardValue.state && CardValue.enabled)
        {
            <p>@CardValue.value</p>
        }
